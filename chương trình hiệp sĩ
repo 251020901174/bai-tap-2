@@ -1,0 +1,44 @@
+import random
+def atk (hero, monster):
+    #hero atk
+    hero_atk = random.randint(10, 25)
+    monster -= hero_atk
+
+    #monster atk
+    monster_atk = random.randint(10, 25)
+    hero -= monster_atk
+
+    return hero, monster, hero_atk, monster_atk
+
+def heal (hero):
+    #hero heal
+    hero_heal = random.randint(5, 15)
+    hero += hero_heal
+    if hero > 100:
+        hero = 100
+    return hero, hero_heal
+
+def information (hero, monster):
+    print(f'hero hp: {hero} / monster hp: {monster}')
+
+hero =100
+monster = 100
+
+while True:
+    choice = int(input('1.attack, 2.heal, 3.information: '))
+    if choice == 1:
+        hero, monster, monster_damage, hero_damage = atk(hero, monster)
+        print(f'hero dealt {hero_damage}damage. monter dealt {monster_damage}damage')
+        print(f'Hero HP: {hero} / Monter HP: {monster}')
+
+    elif choice == 2:
+        hero_heal = heal(hero)
+        print(f'Hero HP after heal: {hero_heal}. Hero HP: {hero}')
+    elif choice == 3:
+        information(hero, monster)
+    if hero <= 0:
+        print('Lose')
+        break
+    elif monster <= 0:
+        print('Win')
+        break
